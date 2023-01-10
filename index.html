@@ -1,0 +1,111 @@
+<!--
+Copyright 2018 Google LLC. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+==============================================================================
+-->
+
+<!doctype html>
+
+<head>
+  <title>DECIDIA</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="src/tfjs-examples.css" />
+</head>
+
+<style>
+  .pred-container {
+    margin-bottom: 20px;
+  }
+
+  .pred-container > div {
+    display: inline-block;
+    margin-right: 20px;
+    vertical-align: top;
+  }
+
+  .row {
+    display: table-row;
+  }
+  .cell {
+    display: table-cell;
+    padding-right: 20px;
+  }
+
+  #file-container {
+    margin-bottom: 20px;
+  }
+</style>
+
+<body>
+  <div class="tfjs-example-container">
+    <section class='title-area'>
+      <h2>DECIDIA: Deep-learning for Early Cancer Interception and DIAgnosis</h2>
+	  <p>DECIDIA IS USED ONLY FOR RESEARCH PURPOSE. IT CANNOT BE USED IN CLINICAL DIAGNOSIS.</p>
+    </section>
+
+    <section>
+      <p class='section-head'>Description</p>
+      <p>
+	  Early cancer diagnosis from bisulfite-treated cell-free DNA (cfDNA) fragments require tedious data analytical procedures. 
+	  Here, we present a Deep-learning-based approach for Early Cancer Interception and DIAgnosis (DECIDIA) that can achieve 
+	  accurate cancer diagnosis exclusively from bisulfite-treated cfDNA sequencing fragments. 
+	  DECIDIA relies on feature representation learning of DNA fragments and weakly supervised learning for classification. 
+	  DECIDIA achieved high classification performance in diagnosis of cancer and cancer-type classification without the requirement of reads mapping.
+      </p>
+
+	  <p>
+      We provided DECIDIA for diagnosis of colorectal cancer (CRC) and cancer-type prediction (i.e. colorectal cancer vs. 
+	  hepatocellular carcinoma vs. lung cancer). DECIDIA expects a text input file of sequencing reads one per line. 
+	  For example, you can put the following reads in a text file <b>read.txt</b> and upload the file. 
+	  DECIDIA runs prediction on your local browser by using <a href="https://onnxruntime.ai/docs/tutorials/web/">onnxruntime-web</a>. 
+	  Therefore, it's safe that data never leaves the device for inferencing. 
+	  It will take a few seconds to cache the model locally for the first time.
+	  </p>
+
+	  <p>
+	  ACGAGAAAAACTAACCCCCACCTCCCTCCTAAATAAAATAACTACCAAACAAAAACACTCCTCACTTCCCAAATAAAA</br>
+	  ACATTGAACTTAAAAACAAATACAATTCCCAAACATCTAAACCAAACCACTTTCACCACTACACAACCAAAAATATAC</br>
+	  TTCCTTACAAAAATACTCCCCACATCTCAAATAATAAACGACCGAACAAAAACGCTCCTCACTTCCCAAACAAAACGT</br>
+	  </p>
+    
+    </section>
+
+    <section>
+      <p class='section-head'>Classifier</p>
+	  <div>
+	    <select id="ClassifierID">
+	      <option>colorectal-cancer-diagnosis</option>
+		  <option>cancer-type-classification</option>
+		</select>
+	  </div>
+    </section>
+
+
+    <section>
+      <p class='section-head'>Upload A File</p>
+	  <input type="file" id="files", name="files[]" multiple>
+    </section>
+
+
+    <section>
+      <p class='section-head'>Predictions</p>
+      <div id="predictions"></div>
+    </section>
+
+
+    <script type="module" src="index.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+  </div>
+</body>
